@@ -455,7 +455,6 @@ claims_by_type = {}
     
 #ANS:
 
-# Build claims_by_type using setdefault()
 
 for claim in claims:
     claims_by_type.setdefault(claim["type"], []).append(claim["claim_id"])
@@ -506,7 +505,6 @@ for status, ids in status_groups.items():
 
 #ANS:
 
-# Build policy_claims_index
 policy_claims_index = {}
 
 for claim in claims:
@@ -519,8 +517,6 @@ for claim in claims:
     policy_claims_index[policy_id]["count"] += 1
     policy_claims_index[policy_id]["total_amount"] += amount
 
-
-# Print each line
 for policy_id, data in policy_claims_index.items():
     print(f"{policy_id}: {data['count']} claims, ${data['total_amount']:,.2f} total")
     
@@ -541,8 +537,6 @@ high_value_open = [c for c in claims if c["status"] == "OPEN" and c["amount"] >=
 for c in high_value_open:
     print(c["claim_id"], c["amount"])
 
-
-# BONUS: generator expression + sum of amounts
 total_high_value_open = sum(c["amount"] for c in claims if c["status"] == "OPEN" and c["amount"] >= 3000)
 print("Total amount:", total_high_value_open)
 
@@ -557,9 +551,6 @@ print("Total amount:", total_high_value_open)
 # Dict comprehension - claim_id: amount
 amount_lookup = {c["claim_id"]: c["amount"] for c in claims}
 
-# Look up CLM004
-print(amount_lookup["CLM004"])
-    
 
 #Q5.3 [4pts] - Set comprehension - Unique policy IDs with open claims
 #Build open_policy_ids - a set of all policy_id values where status == "OPEN". Print the set. Then check if "POL003" has any open claims.
@@ -576,7 +567,6 @@ open_policy_ids = {c["policy_id"] for c in claims if c["status"] == "OPEN"}
 
 print(open_policy_ids)
 
-# Check if "POL003" has any open claims
 print("POL003" in open_policy_ids)
 
 
